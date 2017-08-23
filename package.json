@@ -5,6 +5,7 @@
   "author": "myf",
   "license": "MIT",
   "dependencies": {
-    "dbus": "^1.0.0"
+    "dbus": "^1.0.0",
+    "dbus-native": "^0.2.2"
   }
 }
