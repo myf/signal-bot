@@ -1,18 +1,20 @@
-const dbus = require('dbus-native');
-const session_bus = dbus.sessionBus();
+const dbus = require('dbus');
 
+const bus = dbus.getBus('session');
 
-session_bus
-    .getService('org.freedesktop.DBus')
-    .getInterface('/org/freedesktop/Dbus', 'org.freedesktop.DBus', function(err, ret) {
-        debugger;
-        // dbus signals are EventEmitter events
-
-        //ret.on('MessageReceived', function() {
-         //   console.log('messageReceived', arguments);
-        //});
-    });
-
-
-
-
+bus.getInterface(
+    'org.asamk.Signal',
+    '/org/asamk/Signal',
+    'org.asamk.Signal', (err, inter) => {
+     
+        if (err) console.log(err);
+        inter.on('MessageReceived', (timestamp,
+            sender,
+            groupid,
+            message,
+            attachments) => {
+                inter.sendMessage(message, attachments, [sender], function(err) {
+                    if(err) console.log(err);
+                });
+        });
+});
