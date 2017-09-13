@@ -4,6 +4,9 @@
   "main": "index.js",
   "author": "myf",
   "license": "MIT",
+  "scripts": {
+      "start": "node index.js"
+  },
   "dependencies": {
     "dbus": "^1.0.0",
     "dbus-native": "^0.2.2"
